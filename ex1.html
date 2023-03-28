@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const myArr = ['강아지', '고양이', '햄스터', '거북이', '이구아나'];
+
+myArr.forEach((el, i) => {
+    console.log(el);
+    console.log(i);
+    if(el === '고양이') {
+    	myArr.shift();
+    }
+})
+
+
+
+console.log(myArr); // ["고양이", "햄스터", "거북이", "이구아나"]
+    </script>
+</body>
+</html>

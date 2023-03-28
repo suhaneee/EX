@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   /*
+var jsonText = {
+                  "name": "Someone else", 
+                  "lastName": "Kim" 
+                };  // JSON 형식의 문자열
+
+var realObject = JSON.parse(jsonText); //객체 -> 문자 
+var jsonText2 = JSON.stringify(realObject); //문자 -> 객체
+
+console.log(realObject);
+console.log(jsonText2);
+console.clear();
+  
+const str = `{
+  "name": "홍길동",
+  "age": 25,
+  "married": false,
+  "family": { "father": "홍판서", "mother": "춘섬" },
+  "hobbies": ["독서", "도술"],
+  "jobs": null
+}`;
+
+const obj = JSON.parse(str);
+console.log(obj);
+
+const str2 = JSON.stringify(obj, null, 2); //2개의 공백으로 들여쓰기
+console.log(str2);*/
+
+const person = {
+    "name":"홍길동",
+    "age":12,
+    "married":false,
+    "family":{ "father":"홍판서", "mother":"춘섬"},
+    "hobbies":["독서", "도술"],
+    "jobs":null
+};
+
+console.log(person['age']);
+
+console.log(person['hobbies'][1]);
+
+person.school="삼육보건대";
+console.log(person['school']); //지우는것 메소드  찾기
+
+delete person.age;
+console.log(person);
+
+
+for(let key in person){
+    console.log(key);//키 벨류 값 모두 출력하기 
+};
+
+
+
+for(let key of Object.keys(person)){
+    console.log(key + person[key]); //키값+벨류값 
+};
+
+
+for(let key of Object.keys(person)){
+    let value = person[key];
+    if(typeof value === 'object'){  //value의 유형이 객체 인지확인               //JSON.stringify() = 객체를 문자열로 
+        value = JSON.stringify(value);// Object 출력하기 위선 현재 값이 객체인지 typeof 연산자로 확인하도록 해야함 객체인 경우 JSON.stringify()를 사용하여 문자열 표현으로 변환
+    }
+    console.log(key +":"+ value);
+}
+
+/*
+console.log(person.family.mother);//두번째 키값만 받아오기
+
+console.log(Object.keys(person.family)[1]);
+
+console.log(Object.keys(person));
+s
+console.log(Object.values(person.family));
+
+console.log(person['hobbies'][0])
+
+console.log(Object.keys(person.family));
+
+person.love='love';
+
+console.log(person);
+
+for(let key in person){
+    console.log(person[key]);
+};*/
+
+
+//객체 출력,값 변경,요소 추가... 방법 함수들 코드롤 작성
+    </script>
+</body>
+</html>

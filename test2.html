@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 배열로 된 학생들의 성적을 객체배열로 전환하시오.
+      let name = ["kim", "lee", "park", "song", "hong"];
+      let kor = [100, 60, 78, 33, 60];
+      let math = [60, 70, 79, 63, 61];
+      let eng = [60, 70, 70, 60, 60];
+
+      let grades = name.map((name, i) => { //인덱스 i를 사용하여 각 과목의 요소를 접근 
+        return {
+          name: name,
+          kor: kor[i],
+          math: math[i],
+          eng: eng[i],
+        };
+      });
+
+      console.log(grades); //map()사용하여 return 
+
+
+      let grade =[] //빈 배열 생성
+      for (let i = 0; i < name.length; i++) {
+        let student ={};
+        student.name=name[i]; 
+        student.kor=kor[i],
+        student.math=math[i],
+        student.eng=eng[i], 
+        grade.push(student); //push()로 합침
+      }
+      console.log(grade);
+
+let korAvg = kor.reduce((sum, score)=> sum + score , 0) / kor.length;
+console.log(korAvg); // kor 점수값의 평균*/
+     </script>
+  </body>
+</html>

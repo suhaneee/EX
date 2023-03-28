@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 1. 나이 20세 이상 사람이름 출력 
+           2. part"dev"인 사람들의 평균나이
+           3. 사람이름 배열만들기 
+             let names=[ ];                */
+
+      let JObj = [
+        { name: "홍길동", age: 16, part: "dev" },
+        { name: "박명수", age: 20, part: "dev" },
+        { name: "김철수", age: 35, part: "Manage" },
+      ];
+
+      for (let i = 0; i < JObj.length; i++) {
+        if (JObj[i].age >= 20) {
+          console.log(JObj[i].name); //나이가 20세 이상인 사람들 이름 출력
+        }
+      }
+      
+      const baby = JObj.filter((babys) => babys.age >=20)
+      for(let i=0; i<baby.length; i++){
+     console.log(baby[i].name);}
+       //name 만 출력하기
+       //filter메서드 사용해서 age가 20 이상인 사람 배열로 출력
+      
+
+      for (let i = 0; i < JObj.length; i++) {
+        if (JObj[i].part === "dev") {
+          console.log(JObj[i].name); //part가 dev인 사람들 출력
+        }
+      }
+
+      let devsum = 0; //초기값 0 설정
+      let devcount = 0;
+      for (let i = 0; i < JObj.length; i++) {
+        if (JObj[i].part === "dev") { 
+          devsum += JObj[i].age; // devsu= part가 dev인 사람들 age 합 
+          devcount ++; 
+        }
+      }
+      let devAverge = devsum/devcount;
+      console.log(devAverge);//part가 dev인 사람들 평균나이
+
+
+let devObj = JObj.filter(obj=>obj.part ==="dev"); //part가 dev 사람 선정
+let devAges = devObj.map(obj => (obj.age+obj.part)); //devObj의 age 합침 //age part 따로 묵인채로 출력****************
+console.log(devAges);
+/*
+let avgAge = devAges.reduce((accumulator, age)=> accumulator + age, 0) / devAges.length;//reduce()메소드 사용 age를 accumulator 하여 devAges.length로 나눔
+console.log(avgAge);                          //초기 누산값을 0으로 설정
+
+
+let names=[];
+for(let obj of JObj){
+  names.push(obj.name);//.push() 사용해서 names 에 이름만 출력
+};
+console.log(names);
+
+
+let names1=JObj.map(obj=>obj.name);//map()메소드 사용
+console.log(names1);*/
+
+
+
+      
+    </script>
+  </body>
+</html>

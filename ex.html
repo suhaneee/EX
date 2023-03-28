@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const numbers = ["바나나", "사과", 3, 4, 5, "배", "지렁이", true];
+
+      let count = 0;
+
+      numbers.forEach(function (num) {
+        count++;
+        if (count === 8) {
+          console.log(num);
+          return;
+        }
+      });
+
+      for (let i of numbers) {
+        console.log(i);
+      }
+
+      for (let i in numbers) {
+        console.log(numbers[i]);
+      }
+// 지정된 부분 리턴 하여출력 
+      let c=0; 
+      numbers.forEach((num)=>{
+        c++;
+        if(c === 2){
+            console.log(num);
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+  </head>
+  <body>
+    <script>
+      //다음 학생들의 성적을 과목별로 재정리하시오.
+
+
+      let record_arr = [ //1. 데이터 값만 data.js에 분리하기 
+        { name: "kim", kor: 100, math: 60, eng: 80 },
+        { name: "lee", kor: 80, math: 55, eng: 85 },
+        { name: "park", kor: 90, math: 65, eng: 88 },
+        { name: "mike", kor: 60, math: 75, eng: 81 },
+        { name: "sam", kor: 90, math: 85, eng: 84 },
+      ];
+      //map 다시 정리하기 구체적으로 정리해서 filter와 처이점 설명
+
+      const subjects = ["kor", "math", "eng"]; //과목들로만 배열 생성
+      const result = subjects.map((subject) => {
+        const obj = { subjectname: subject }; //obj에  subjectname: subject 추가 sunhect에는 각 과목 생성
+        record_arr.forEach((record) => {
+          obj[record.name] = record[subject]; //name에 각 과목 성적값 있는 객체에 속성추가
+        });
+        return obj;
+      });
+      console.log(result);
+
+      // data.js로 분리하기
+      //배열안에 avg와 total 값 포함되게
+
+      const AvgAndTotal = result.map((obj) => {
+        const newObj = {...obj }; // 스프레드 연산자로 obj의 모든 요소 불러옴 // 2.obj 써서 만들기 
+       
+        const grades = Object.values(newObj).slice(1); // slice로 지정된 [1]번째 부터 끝까지의 요소들을  grades 변수에 불러옴
+       console.log(grades);                   //3. reduce()사용 키값이 name 아닐 경우만 불러옴 
+
+        const total = grades.reduce((acc, i) => acc + i); //total에 grades의 각 과목 점수들 모두 합침
+        
+        const avg = total / grades.length;
+
+        newObj.total = total;
+        newObj.avg = avg;
+
+        return newObj;
+      });
+
+      console.log(AvgAndTotal); // 4. 한번에 avg total 합쳐서 만들기 
+    </script>
+  </body>
+</html>

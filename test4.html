@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let record_arr = [
+  { "name": "kim", "kor": 100, "math": 60, "eng": 80 },
+  { "name": "lee", "kor": 80, "math": 55, "eng": 85 },
+  { "name": "park", "kor": 90, "math": 65, "eng": 88 },
+  { "name": "mike", "kor": 60, "math": 75, "eng": 81 },
+  { "name": "sam", "kor": 90, "math": 85, "eng": 84 }
+];
+
+      // fetch("./data.json")
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     record_arr=[...data];
+      //     console.log(record_arr);
+      //     console.log(data);
+      //   });
+
+      // Fetch the data from data.js and parse it as JSON
+      // fetch("./data.json")
+      //   .then((response) => {
+      //     response.json()
+      //   })
+
+      //   .then((data) => {
+      //     // Add the data to the array
+      //     record_arr = data;
+      //     console.log(data);
+      //   })
+      //   .catch((error) => {
+      //     console.log("Error retrieving data:", error);
+      //   });
+
+
+      const subjects = ["kor", "math", "eng"];
+      const AvgAndTotal = [];
+
+      for (let i = 0; i < subjects.length; i++) {
+        const subject = subjects[i];
+        const obj = { subjectname: subject };
+        record_arr.forEach((record) => {
+          obj[record.name] = record[subject];
+        });
+
+        const grades = Object.keys(obj)
+          .filter((key) => key !== "subjectname") //키가 subjectname인 요소를 제외한 값만 담아 새 배열을 반환
+          .map((key) => obj[key]); //obj의 값들만 포함하여 새 배열로 반환
+        const total = grades.reduce((acc, i) => acc + i);
+        const avg = total / grades.length;
+
+        obj.total = total;
+        obj.avg = avg;
+
+        AvgAndTotal.push(obj);
+      }
+
+      console.log(AvgAndTotal);
+
+      //이름 입력해서 해당 학생의 성적 평균 총합 출력
+      const name = prompt("이름을 입력해주세요:"); //변수 name에 값을 입력 받음
+      const student = record_arr.find((record) => record.name === name); //name 변수의 입력받은 name 을 find()로 찾아 값을 student에 할당함
+
+      if (student) {
+        const grades = subjects.map((subject) => student[subject]);
+        const total = grades.reduce((acc, grade) => acc + grade);//1. promise로 동기화 시키기 어싱크 await 
+        const avg = total / grades.length;
+
+        alert(
+          ` ${name}의 성적 ${grades.join(
+            ", "
+          )} / Total: ${total} / Average: ${avg}`
+        );
+      } else {
+        alert(`${name}을 찾을 수 없습니다. 다시 입력해주세요`);
+      }
+
+      //이름,각 과목의 성적 입력하여 record_arr 배열에 추가하기  
+      const names = prompt("이름을 입력해 주세요");//2.한번에 값 입력받기 , 로 구분
+      const kor = parseFloat(prompt("Korean 점수를 입력해 주세요"));
+      const math = parseFloat(prompt("math 점수를 입력해 주세요"));
+      const eng = parseFloat(prompt("eng 점수를 입력해 주세요"));
+      //입력값 유효한지 확인
+      if (names && !isNaN(kor) && !isNaN(math) && !isNaN(eng)) {
+        const newRecord = { names, kor, math, eng };
+
+        record_arr.push(newRecord); //기존 배열에 newRecord 추가하여 반환
+
+        alert(
+          JSON.stringify(
+            newRecord["names"] +
+              "성적" +
+              newRecord["kor"] +
+              "/" +
+              newRecord["math"] +
+              "/" +
+              newRecord["eng"]
+          )
+        );
+      } else {
+        alert("입력값이 틀렸습니다. 다시 입력해 주세요.");
+      }
+      console.log(record_arr);
+
+      //학생 이름 입력하여 해당 요소 삭제
+      const nameToDelete = prompt("삭제할 이름을 입력하세요");
+      record_arr = record_arr.filter((record) => record.name !== nameToDelete); //3.forEach로 name확인해서 delete 하기
+      alert(`${nameToDelete}의 정보가 삭제되었습니다.`);
+      console.log(record_arr);
+    </script>
+  </body>
+</html>
